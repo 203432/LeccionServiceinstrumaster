@@ -1,11 +1,13 @@
 import bodyParser from "body-parser";
+import { config } from "dotenv";
 import express from "express";
 
 import { lessonRouter } from "./lesson/infraestructure/LessonRoute";
 
 const app = express();
+config();
 
-const PORT = 3000;
+const PORT = process.env.PORTPROJECT;
 
 app.use(bodyParser.json());
 
@@ -17,5 +19,8 @@ app.get("/", function (req, res) {
 });
 
 app.listen(PORT, () => {
-  console.log(`[APP] - Starting application on port ${PORT}`);
+  console.log(
+    `[APP] - Starting application on port ${process.env.PORTPROJECT}`
+  );
+  console.log(`[APP] - Starting application on ip ${process.env.IPPROJECT}`);
 });

@@ -1,8 +1,9 @@
+import { config } from "dotenv";
 import { Request, Response } from "express";
 
 import { GetLessonByIdUseCase } from "../../application/GetLessonByIdUseCase";
 import { Lesson } from "../../domain/Lesson";
-
+config();
 export class GetLessonByIdController {
   constructor(readonly getLessonByIdUseCase: GetLessonByIdUseCase) {}
 
@@ -18,7 +19,7 @@ export class GetLessonByIdController {
     const imageFromDB = lesson.lesson_icon;
     console.log(imageFromDB);
     const imageName = imageFromDB.split("\\").pop();
-    const baseUrl = "http://localhost:3000/public/";
+    const baseUrl = `http://${process.env.IPPROJECT}:${process.env.PORTPROJECT}/public/`;
     const imageUrl = baseUrl + imageName;
     console.log(imageUrl);
     const encodedUrl = encodeURI(imageUrl);
