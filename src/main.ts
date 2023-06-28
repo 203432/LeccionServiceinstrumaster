@@ -11,11 +11,13 @@ const PORT = process.env.PORTPROJECT;
 
 app.use(bodyParser.json());
 
-app.use("/course", lessonRouter);
+app.use("/lesson", lessonRouter);
 
 app.use("/public", express.static("imgs"));
 app.get("/", function (req, res) {
-  res.send("Esta es la API de la entidad curso de el proeycto instrumaster");
+  res.send(
+    "Esta es la API de la entidad de lessons de el proeycto instrumaster"
+  );
 });
 
 app.listen(PORT, () => {
