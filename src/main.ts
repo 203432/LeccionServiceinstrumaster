@@ -11,7 +11,7 @@ const PORT = process.env.PORTPROJECT;
 
 app.use(bodyParser.json());
 
-app.use("/lesson", lessonRouter);
+app.use("/lessons", lessonRouter);
 
 app.use("/public", express.static("imgs"));
 app.get("/", function (req, res) {

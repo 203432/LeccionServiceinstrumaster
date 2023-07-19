@@ -5,13 +5,14 @@ import { pool } from "./postgres/database";
 export class PostgresLessonRepository implements LessonRepository {
   async createLesson(lesson: Lesson): Promise<Lesson | null> {
     await pool.query(
-      'INSERT INTO public."Lessons" (id_course, lesson_name, level, stars, lesson_icon) VALUES ($1,$2,$3,$4,$5)',
+      'INSERT INTO public."Lessons" (id_course, lesson_name, level, stars, lesson_icon, difficult) VALUES ($1,$2,$3,$4,$5,$6)',
       [
         lesson.id_course,
         lesson.lesson_name,
         lesson.level,
         lesson.stars,
         lesson.lesson_icon,
+        lesson.difficult,
       ]
     );
     console.log(
@@ -44,7 +45,8 @@ export class PostgresLessonRepository implements LessonRepository {
           row.lesson_name,
           row.level,
           row.stars,
-          row.lesson_icon
+          row.lesson_icon,
+          row.difficult
         );
       });
       return lessons;

@@ -11,27 +11,14 @@ export class GetAllLessonsController {
     try {
       const lessons = await this.getAllLessonsUseCase.run();
 
-      const baseUrl = `http://${process.env.IPPROJECT}:${process.env.PORTPROJECT}/public/`;
-
-      const transformedLessons = lessons?.map((lesson) => {
-        const imageName = lesson.lesson_icon.split("\\").pop();
-        const imageUrl = baseUrl + imageName;
-        const encodedUrl = encodeURI(imageUrl);
-
-        return {
-          ...lesson,
-          course_logo: encodedUrl,
-        };
-      });
-
       return res.status(200).json({
         message: "Lista de lecciones obtenida correctamente",
-        data: transformedLessons,
+        data: lessons,
       });
     } catch (error) {
-      console.error("Error al obtener la lista de cursos:", error);
+      console.error("Error al obtener la lista de lecciones:", error);
       return res.status(500).json({
-        message: "Error al obtener la lista de cursos",
+        message: "Error al obtener la lista de lecciones",
       });
     }
   }

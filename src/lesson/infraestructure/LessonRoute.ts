@@ -1,6 +1,5 @@
 import express from "express";
 
-import upload from "../../libs/multer";
 import {
   createLessonController,
   getAllLessonsController,
@@ -12,11 +11,7 @@ export const lessonRouter = express.Router();
 
 //Crear lecciones
 
-lessonRouter.post(
-  "/",
-  upload.single("lesson_icon"),
-  createLessonController.run.bind(createLessonController)
-);
+lessonRouter.post("/", createLessonController.run.bind(createLessonController));
 
 //Get All lessons
 lessonRouter.get(

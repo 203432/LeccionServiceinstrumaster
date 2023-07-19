@@ -5,6 +5,7 @@ export class Lesson {
     readonly lesson_name: string,
     readonly level: string,
     readonly stars: number,
-    readonly lesson_icon: string
+    readonly lesson_icon: string,
+    readonly difficult: number
   ) {}
 }
